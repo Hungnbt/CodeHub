@@ -13,8 +13,8 @@ void printWord(char *word);
 void lcd_init();
 void sendCommand(char);
 void printCharecter(char);
-void sendCommadByNibbles(char);
-void sendDataByNibbles(char);
+void sendCommad(char);
+void sendData(char);
 void clearFirstLine(void);
 void clearSecondLine(void);
 void clear(void);
@@ -38,22 +38,22 @@ void sendCommand(char cmd_value)
 	char cmd_value1;
 	
 	cmd_value1 = cmd_value & 0xF0; //mask lower nibble because PA4-PA7 pins are used.
-	sendCommadByNibbles(cmd_value1); // send to LCD
+	sendCommad(cmd_value1); // send to LCD
 	
 	cmd_value1 = ((cmd_value<<4) & 0xF0); //shift 4-bit and mask
-	sendCommadByNibbles(cmd_value1); // send to LCD
+	sendCommad(cmd_value1); // send to LCD
 }
 
 void printCharecter(char data_value)
 {
 	char data_value1;
 	data_value1=data_value&0xF0;
-	sendDataByNibbles(data_value1);
+	sendData(data_value1);
 	data_value1=((data_value<<4)&0xF0);
-	sendDataByNibbles(data_value1);
+	sendData(data_value1);
 }
 
-void sendCommadByNibbles(char cmdout)
+void sendCommad(char cmdout)
 {
 	PORTB=cmdout;
 	PORTD&=~(1<<rs);
@@ -63,7 +63,7 @@ void sendCommadByNibbles(char cmdout)
 	PORTD&=~(1<<en);
 }
 
-void sendDataByNibbles(char dataout)
+void sendData(char dataout)
 {
 	PORTB=dataout;
 	PORTD|=(1<<rs);
