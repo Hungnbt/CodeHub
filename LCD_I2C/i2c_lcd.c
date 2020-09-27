@@ -1,3 +1,4 @@
+/*** LCD with I2C1 of STM32  ***/
 
 /** Put this in the src folder **/
 
