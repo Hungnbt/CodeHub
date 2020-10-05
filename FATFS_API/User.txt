@@ -1,4 +1,4 @@
-	LIB Function
+	LIB Function :
 
 	/* File Access : Truy cập File  */
 	f_open - Open/Create a file : Mở hoặc tạo 1 file
